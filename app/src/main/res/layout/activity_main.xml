@@ -23,6 +23,7 @@
             android:textColor="#000"/>
 
         <Button
+            android:id="@+id/openDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="open dialog"
@@ -34,6 +35,7 @@
             android:id="@+id/inputDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/openDialog"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
             android:textSize="15sp"
@@ -41,7 +43,5 @@
 
 
     </RelativeLayout>
-
-
 
 </RelativeLayout>
