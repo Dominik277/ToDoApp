@@ -13,15 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="This is an Activity"
-            android:textSize="18dp"
-            android:textColor="#000"/>
-
         <Button
             android:id="@+id/openDialog"
             android:layout_width="wrap_content"

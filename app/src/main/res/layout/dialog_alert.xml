@@ -17,7 +17,7 @@
             android:id="@+id/heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your custom Dialog Heading"
+            android:text="Dodaj novi podsjetnik"
             android:textSize="18sp"
             android:textColor="#000"/>
 
@@ -35,7 +35,7 @@
             android:id="@+id/actionOk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OK"
+            android:text="Unesi"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
@@ -46,7 +46,7 @@
             android:id="@+id/actionCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CANCEL"
+            android:text="Poništi"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:layout_marginRight="20dp"
