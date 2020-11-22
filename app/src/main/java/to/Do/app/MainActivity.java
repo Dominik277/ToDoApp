@@ -29,24 +29,16 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mOpenDialog = findViewById(R.id.openDialog);
         mInputDisplay = findViewById(R.id.inputDialog);
         floatingActionButton = findViewById(R.id.floatinActionButton);
 
-        mOpenDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG,"onClick: opening dialog.");
-                MyCustomDialog dialog = new MyCustomDialog();
-                dialog.show(getSupportFragmentManager(),"fsag");
-            }
-        });
+
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view,"Ovo je snackbar",Snackbar.LENGTH_LONG)
-                        .setAction("Action",null).show();
+                MyCustomDialog dialog = new MyCustomDialog();
+                dialog.show(getSupportFragmentManager(),"fsag");
             }
         });
 
