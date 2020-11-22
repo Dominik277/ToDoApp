@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
     private Button mOpenDialog;
     private TextView mInputDisplay;
     private String mInput;
-    private View actionItem;
 
 
     @Override
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
 
         mOpenDialog = findViewById(R.id.openDialog);
         mInputDisplay = findViewById(R.id.inputDialog);
-        actionItem = findViewById(R.id.actionIcon);
 
         mOpenDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,13 +37,6 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
             }
         });
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return true;
     }
 
     @Override
@@ -60,20 +51,4 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
         mInputDisplay.setText(mInput);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.actionIcon:
-                otvoriAlertDialog();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void otvoriAlertDialog() {
-
-
-
-    }
 }
