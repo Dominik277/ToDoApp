@@ -1,29 +1,24 @@
 package to.Do.app;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements MyCustomDialog.OnInputListener {
+public class MainActivity extends AppCompatActivity implements MyCustomDialog.OnInputListener,MyRecyclerViewAdapter.ItemClickListener {
 
     private static final String TAG = "MainActivity";
-    private TextView uneseniTekst;
     private String mInput;
     private FloatingActionButton floatingActionButton;
-    private RecyclerView recyclerView;
 
 
     @Override
@@ -31,10 +26,23 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        uneseniTekst = findViewById(R.id.uneseniTekst);
         floatingActionButton = findViewById(R.id.floatinActionButton);
-        recyclerView = findViewById(R.id.recyclerView);
 
+        ArrayList<String> items = new ArrayList<>();
+        items.add("First CardView Item");
+        items.add("Second CardView Item");
+        items.add("Third CardView Item");
+        items.add("Fourth CardView Item");
+        items.add("Fifth CardView Item");
+        items.add("Sixth CardView Item");
+
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        MyRecyclerViewAdapter recyclerViewAdapter = new MyRecyclerViewAdapter(this,items);
+        recyclerViewAdapter.setClickListener((MyRecyclerViewAdapter.ItemClickListener) this);
+        recyclerView.setAdapter(recyclerViewAdapter);
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,15 +57,14 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
     @Override
     public void sendInput(String input) {
         mInput = input;
-        setInputToTextView();
         Log.d(TAG,"sendInput: got the input: " + input);
 
     }
 
-    private void setInputToTextView() {
-        uneseniTekst.setText(mInput);
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(this,"You clicked ",Toast.LENGTH_SHORT)
+                .show();
     }
-
-
-
 }
