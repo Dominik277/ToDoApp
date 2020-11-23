@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,15 +60,18 @@ public class MainActivity extends AppCompatActivity {
                         .setTitle("Add a new task")
                         .setMessage("What do you want to do next?")
                         .setView(taskEdit)
-                        .setPositiveButton("Add",(dialog, which)->{
-                            String task = String.valueOf(taskEdit.getText());
-                            SQLiteDatabase db = taskHelper.getWritableDatabase();
-                            ContentValues values = new ContentValues();
-                            values.put(TaskContract.TaskEntry.COL_TASK_TITLE,task);
-                            db.insertWithOnConflict(TaskContract.TaskEntry.TABLE,null,values,SQLiteDatabase.CONFLICT_REPLACE);
-                            db.close();
-                            updateUI();
-            })
+                        .setPositiveButton("Add",new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String task = String.valueOf(taskEdit.getText());
+                                SQLiteDatabase db = taskHelper.getWritableDatabase();
+                                ContentValues values = new ContentValues();
+                                values.put(TaskContract.TaskEntry.COL_TASK_TITLE, task);
+                                db.insertWithOnConflict(TaskContract.TaskEntry.TABLE, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+                                db.close();
+                                updateUI();
+                            }
+                        })
                         .setNegativeButton("Cancel",null).create();
                 dialog.show();
                 return true;
@@ -85,4 +90,28 @@ public class MainActivity extends AppCompatActivity {
         db.close();
         updateUI();
     }
+
+    private void updateUI(){
+        ArrayList<String> taskList = new ArrayList<>();
+        SQLiteDatabase db = taskHelper.getReadableDatabase();
+        Cursor cursor = db.query(TaskContract.TaskEntry.TABLE,
+                new String[]{TaskContract.TaskEntry._ID,TaskContract.TaskEntry.COL_TASK_TITLE},
+                null,null,null,null,null);
+        while (cursor.moveToNext()){
+                int idx = cursor.getColumnIndex(TaskContract.TaskEntry.COL_TASK_TITLE);
+                taskList.add(cursor.getString(idx));
+        }
+
+        if (arrayAdapter == null){
+            arrayAdapter = new ArrayAdapter<>(this,R.layout.todo_task,R.id.title_task,taskList);
+            TaskList.setAdapter(arrayAdapter);
+        }else {
+            arrayAdapter.clear();
+            arrayAdapter.addAll(taskList);
+            arrayAdapter.notifyDataSetChanged();
+        }
+        cursor.close();
+        db.close();
+    }
+
 }
