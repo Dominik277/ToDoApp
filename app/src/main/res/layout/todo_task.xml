@@ -4,7 +4,20 @@
     android:layout_height="match_parent">
     
     <TextView
-        android:layout_width=""
-        android:layout_height=""
+        android:id="@+id/naslov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/gumbObrisi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:onClick="obrisiPodsjetnik"
+        android:layout_alignParentRight="true"
+        android:text="Zadatak obavljen"/>
 
 </RelativeLayout>
