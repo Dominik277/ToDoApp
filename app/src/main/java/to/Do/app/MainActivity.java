@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void deleteTask(View view) {
+    public void obrisiPodsjetnik(View view) {
         View parent = (View) view.getParent();
         TextView taskTextView = (TextView) parent.findViewById(R.id.title_task);
         String task = String.valueOf(taskTextView.getText());
