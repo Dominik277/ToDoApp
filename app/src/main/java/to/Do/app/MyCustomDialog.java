@@ -22,29 +22,30 @@ public class MyCustomDialog extends DialogFragment {
 
     public OnInputListener mOnInputListener;
 
-    private EditText mInput;
-    private TextView mActionOk,mActionCanlcel;
+    private EditText mjestoUpisaPodsjetnika;
+    private TextView gumbUnesi,gumbPonisti;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.dialog_alert,container,false);
-        mInput = view.findViewById(R.id.input);
-        mActionOk = view.findViewById(R.id.actionOk);
-        mActionCanlcel = view.findViewById(R.id.actionCancel);
+        mjestoUpisaPodsjetnika = view.findViewById(R.id.mjestoUpisaPodsjetnika);
+        gumbUnesi = view.findViewById(R.id.gumbUnesi);
+        gumbPonisti = view.findViewById(R.id.gumbPonisti);
 
-        mActionCanlcel.setOnClickListener(new View.OnClickListener() {
+        gumbPonisti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 getDialog().dismiss();
             }
         });
 
-        mActionOk.setOnClickListener(new View.OnClickListener() {
+        gumbUnesi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input = mInput.getText().toString();
+                String input = mjestoUpisaPodsjetnika.getText().toString();
                 mOnInputListener.sendInput(input);
                 getDialog().dismiss();
             }

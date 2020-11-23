@@ -2,6 +2,8 @@ package to.Do.app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,10 +20,10 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainActivity extends AppCompatActivity implements MyCustomDialog.OnInputListener {
 
     private static final String TAG = "MainActivity";
-    private Button mOpenDialog;
-    private TextView mInputDisplay;
+    private TextView uneseniTekst;
     private String mInput;
     private FloatingActionButton floatingActionButton;
+    private RecyclerView recyclerView;
 
 
     @Override
@@ -29,16 +31,16 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mInputDisplay = findViewById(R.id.inputDialog);
+        uneseniTekst = findViewById(R.id.uneseniTekst);
         floatingActionButton = findViewById(R.id.floatinActionButton);
-
+        recyclerView = findViewById(R.id.recyclerView);
 
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MyCustomDialog dialog = new MyCustomDialog();
-                dialog.show(getSupportFragmentManager(),"fsag");
+                dialog.show(getSupportFragmentManager(),null);
             }
         });
 
@@ -46,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
 
     @Override
     public void sendInput(String input) {
-
-        Log.d(TAG,"sendInput: got the input: " + input);
         mInput = input;
         setInputToTextView();
+        Log.d(TAG,"sendInput: got the input: " + input);
+
     }
 
     private void setInputToTextView() {
-        mInputDisplay.setText(mInput);
+        uneseniTekst.setText(mInput);
     }
 
 
