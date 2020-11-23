@@ -14,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements MyCustomDialog.OnInputListener,MyRecyclerViewAdapter.ItemClickListener {
+public class MainActivity extends AppCompatActivity implements MyCustomDialog.OnInputListener, MyRecyclerViewAdapter.ItemClickListener {
 
     private static final String TAG = "MainActivity";
     private String mInput;
@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
         floatingActionButton = findViewById(R.id.floatinActionButton);
 
         ArrayList<String> items = new ArrayList<>();
+
         items.add("First CardView Item");
         items.add("Second CardView Item");
         items.add("Third CardView Item");
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        MyRecyclerViewAdapter recyclerViewAdapter = new MyRecyclerViewAdapter(this,items);
+        MyRecyclerViewAdapter recyclerViewAdapter = new MyRecyclerViewAdapter(this, items);
         recyclerViewAdapter.setClickListener((MyRecyclerViewAdapter.ItemClickListener) this);
         recyclerView.setAdapter(recyclerViewAdapter);
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
             @Override
             public void onClick(View view) {
                 MyCustomDialog dialog = new MyCustomDialog();
-                dialog.show(getSupportFragmentManager(),null);
+                dialog.show(getSupportFragmentManager(), null);
             }
         });
 
@@ -57,14 +58,14 @@ public class MainActivity extends AppCompatActivity implements MyCustomDialog.On
     @Override
     public void sendInput(String input) {
         mInput = input;
-        Log.d(TAG,"sendInput: got the input: " + input);
+        Log.d(TAG, "sendInput: got the input: " + input);
 
     }
 
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this,"You clicked ",Toast.LENGTH_SHORT)
+        Toast.makeText(this, "You clicked ", Toast.LENGTH_SHORT)
                 .show();
     }
 }
